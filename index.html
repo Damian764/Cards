@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card deck</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="assets/images/heart.svg" type="image/x-icon">
+</head>
+
+<body>
+    <nav>
+        <div class="grouped-buttons">
+            <button class="btn" onclick="generateCards()">Generate 4 random cards</button>
+            <button class="btn" onclick="shuffleCards()">Shuffle</button>
+            <button class="btn" onclick="showAllValuesAndSuits()">List all cards</button>
+            <button class="btn" onclick="clearBoard()">Clear board</button>
+        </div>
+    </nav>
+    <div class="table-info">
+        <p style="text-align: center">There's <span id="card-count">0</span> cards on the table</p>
+    </div>
+    <div class="cards__container">
+    </div>
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>
