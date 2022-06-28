@@ -50,7 +50,7 @@ function generatePip(index) {
 }
 
 function shuffleCards() {
-    const cards = [...cardsContainer.querySelectorAll('.card')];
+    const cards = [...cardsContainer.querySelectorAll('.card-block')];
     if (cards.length < 1) {
         alertUser('There is no cards to shuffle', 'warning');
     }
@@ -72,7 +72,7 @@ function showAllValuesAndSuits() {
 }
 
 function clearBoard() {
-    const cards = [...cardsContainer.querySelectorAll('.card')];
+    const cards = [...cardsContainer.querySelectorAll('.card-block')];
     for (let i = cards.length - 1; i >= 0; i--) {
         cards[i].style.transitionDelay = ((cards.length - i) * 0.1) + 's';
         setTimeout(() => {
@@ -148,12 +148,8 @@ function generateSingleCard(index, value, suit) {
     const cardInfoReversed = cardInfoValue.cloneNode(true);
     cardInfoReversed.classList.add('reversed');
     cardInfo.appendChild(cardInfoReversed);
-    card.addEventListener('transitionend', () => {
-        document.querySelector('#card-count').textContent = [...cardsContainer.querySelectorAll('.card.visible')].length;
-    })
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
-    cardContainer.style.transitionDelay = (index * 0.1) + 's';
     const backface = document.createElement('div');
     backface.classList.add('card-backface');
     cardContainer.appendChild(card);
@@ -161,8 +157,12 @@ function generateSingleCard(index, value, suit) {
     const cardBlock = document.createElement('div');
     cardBlock.classList.add('card-block');
     cardBlock.appendChild(cardContainer);
+    cardBlock.style.transitionDelay = (index * 0.1) + 's';
+    cardBlock.addEventListener('transitionend', () => {
+        document.querySelector('#card-count').textContent = [...cardsContainer.querySelectorAll('.card-block')].length;
+    })
     setTimeout(() => {
-        cardContainer.classList.add('visible');
+        cardBlock.classList.add('visible');
     }, 100);
     return cardBlock;
 }

@@ -83,17 +83,21 @@ nav {
     background-image: url('../images/club.svg');
 }
 
+.card-block {
+    transition: all 0.1s ease-out;
+    opacity: 0;
+}
+.card-block.visible {
+    opacity: 1;
+}
 .card-container {
     position: relative;
     transform: rotateY(0deg);
     transform-style: preserve-3d;
     transition: all 2s ease-out;
-    opacity: 0;
 }
 
-.card-container.visible {
-    opacity: 1;
-}
+
 
 .card {
     --width: 10rem;
