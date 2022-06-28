@@ -65,22 +65,22 @@ nav {
 
 [data-suit="heart"] .pip,
 [data-suit="heart"] .card-value:before {
-    background-image: url('/assets/images/heart.svg');
+    background-image: url('../images/heart.svg');
 }
 
 [data-suit="diamond"] .pip,
 [data-suit="diamond"] .card-value:before {
-    background-image: url('/assets/images/diamond.svg');
+    background-image: url('../images/diamond.svg');
 }
 
 [data-suit="spade"] .pip,
 [data-suit="spade"] .card-value:before {
-    background-image: url('/assets/images/spades.svg');
+    background-image: url('../images/spades.svg');
 }
 
 [data-suit="club"] .pip,
 [data-suit="club"] .card-value:before {
-    background-image: url('/assets/images/club.svg');
+    background-image: url('../images/club.svg');
 }
 
 .card-container {
