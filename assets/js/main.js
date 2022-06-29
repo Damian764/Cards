@@ -150,6 +150,16 @@ function generateSingleCard(index, value, suit) {
     cardInfo.appendChild(cardInfoReversed);
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
+    cardContainer.addEventListener('mouseenter', () => {
+        if (cardContainer.classList.contains('animating')) return
+        cardContainer.classList.add('animating');
+    });
+    cardContainer.addEventListener('animationend', () => {
+        if (!cardContainer.classList.contains('animating')) return
+        setTimeout(() => {
+            cardContainer.classList.remove('animating');
+        }, 500)
+    })
     const backface = document.createElement('div');
     backface.classList.add('card-backface');
     cardContainer.appendChild(card);
