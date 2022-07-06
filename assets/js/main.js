@@ -20,13 +20,15 @@ const suits = [
     'club',
     'spade'
 ]
+const deckSize = values.length * suits.length;
 let isDrawn = [];
 function generateCards() {
-    if (isDrawn.length >= 52) {
+    if (isDrawn.length >= deckSize) {
         alertUser('All cards have been drawn. Clear the board to generate them again', 'Error');
         return;
     }
-    for (let i = 0; i < 4; i++) {
+    const generateAmount = document.getElementById('cardsToGenerate').value;
+    for (let i = 0; i < generateAmount; i++) {
         let cardValue = getRandomEntryFromArray(values);
         let cardSuit = getRandomEntryFromArray(suits);
         while (isDrawn.indexOf(cardSuit + cardValue) !== -1) {
@@ -63,8 +65,8 @@ function shuffleCards() {
 }
 function showAllValuesAndSuits() {
     let index = 0;
-    for (let i = 0; i < values.length; i++) {
-        for (let j = 0; j < suits.length; j++) {
+    for (let j = 0; j < suits.length; j++) {
+        for (let i = 0; i < values.length; i++) {
             cardsContainer.appendChild(generateSingleCard(index, values[i], suits[j]));
             index++;
         }
@@ -150,15 +152,25 @@ function generateSingleCard(index, value, suit) {
     cardInfo.appendChild(cardInfoReversed);
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
-    cardContainer.addEventListener('mouseenter', () => {
-        if (cardContainer.classList.contains('animating')) return
-        cardContainer.classList.add('animating');
+    cardContainer.addEventListener('click', () => {
+        if (cardContainer.classList.contains('turning')) return
+        cardContainer.classList.add('turning');
+    });
+    cardContainer.addEventListener('dblclick', () => {
+        if (cardContainer.classList.contains('flipping')) return
+        cardContainer.classList.add('flipping');
     });
     cardContainer.addEventListener('animationend', () => {
-        if (!cardContainer.classList.contains('animating')) return
-        setTimeout(() => {
-            cardContainer.classList.remove('animating');
-        }, 500)
+        if (cardContainer.classList.contains('turning')) {
+            setTimeout(() => {
+                cardContainer.classList.remove('turning');
+            }, 300)
+        }
+        if (cardContainer.classList.contains('flipping')) {
+            setTimeout(() => {
+                cardContainer.classList.remove('flipping');
+            }, 300)
+        }
     })
     const backface = document.createElement('div');
     backface.classList.add('card-backface');
@@ -175,4 +187,20 @@ function generateSingleCard(index, value, suit) {
         cardBlock.classList.add('visible');
     }, 100);
     return cardBlock;
+}
+
+function limitInput(input) {
+    const max = parseInt(input.max);
+    const min = parseInt(input.min);
+    const value = parseInt(input.value);
+    console.log(max, min, value)
+    if (value >= max) {
+        input.value = max;
+    }
+    if (value <= min) {
+        input.value = min;
+    }
+}
+function updateGenerateButton(input) {
+    document.getElementById('generate-amount').innerText = input.value;
 }

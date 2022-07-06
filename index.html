@@ -12,8 +12,12 @@
 
 <body>
     <nav>
+        <div class="user-inputs">
+            <label for="cardsToGenerate">How many card do you want to generate?</label>
+            <input type="number" name="cardsToGenerate" id="cardsToGenerate" class="cards-input" value="4" step="1" min="0" max="52" onchange="limitInput(this); updateGenerateButton(this)">
+        </div>
         <div class="grouped-buttons">
-            <button class="btn" onclick="generateCards()">Generate 4 random cards</button>
+            <button class="btn" onclick="generateCards()">Generate <span id="generate-amount">4</span> random cards</button>
             <button class="btn" onclick="shuffleCards()">Shuffle</button>
             <button class="btn" onclick="showAllValuesAndSuits()">List all cards</button>
             <button class="btn" onclick="clearBoard()">Clear board</button>
@@ -21,6 +25,17 @@
     </nav>
     <div class="table-info">
         <p style="text-align: center">There's <span id="card-count">0</span> cards on the table</p>
+    </div>
+    <div class="cards__stack--container">
+        <div class="card card--position"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
+        <div class="card cards__stack"></div>
     </div>
     <div class="cards__container">
     </div>
